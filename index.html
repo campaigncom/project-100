@@ -156,6 +156,8 @@
     // ===========================================================================================
 
     const $ = id => document.getElementById(id);
+    // AI ಉತ್ತರದ ** ಚಿಹ್ನೆಗಳನ್ನು ತೆಗೆದು ಪಟ್ಟಿಯನ್ನು • ಆಗಿ ಬದಲಿಸುತ್ತದೆ
+    const cleanAI = t => String(t).replace(/\*\*/g, "").replace(/^\s*\*\s+/gm, "• ");
     let passcode = "";
     try { passcode = sessionStorage.getItem("p100_pass") || ""; } catch (e) {}
 
@@ -227,7 +229,7 @@
         $("interviewCount").textContent = data.counts.interviews;
         renderList("opinionList", data.opinions, r => r.topic, r => r.opinion);
         renderList("interviewList", data.interviews, r => r.title,
-          r => r.length + " ಅಕ್ಷರಗಳು — " + (r.summary ? r.summary.slice(0, 200) : r.preview));
+          r => r.length + " ಅಕ್ಷರಗಳು — " + (r.summary ? cleanAI(r.summary).slice(0, 200) : r.preview));
         $("homeMsg").textContent = "";
       } catch (err) {
         $("homeMsg").textContent = "ಡೇಟಾ ಲೋಡ್ ಆಗಲಿಲ್ಲ: " + err.message;
@@ -275,7 +277,7 @@
       if (!text) { $("moodResult").textContent = "ಮೊದಲು ಪಠ್ಯವನ್ನು ನಮೂದಿಸಿ."; return; }
       withButton($("moodAiBtn"), $("moodResult"), "AI ವಿಶ್ಲೇಷಿಸುತ್ತಿದೆ...", async () => {
         const data = await api("analyze", { mode: "mood", text });
-        $("moodResult").textContent = data.result;
+        $("moodResult").textContent = cleanAI(data.result);
       });
     });
 
@@ -299,9 +301,9 @@
       if (!text) { $("interviewResult").textContent = "ಮೊದಲು ಸಂದರ್ಶನದ ಪಠ್ಯವನ್ನು ನಮೂದಿಸಿ."; return; }
       withButton($("interviewAiBtn"), $("interviewResult"), "AI ಸಾರಾಂಶ ಸಿದ್ಧಪಡಿಸುತ್ತಿದೆ...", async () => {
         const data = await api("analyze", { mode: "interview", text });
-        $("interviewResult").textContent = data.result;
+        $("interviewResult").textContent = cleanAI(data.result);
         await api("saveInterview", { title, text, summary: data.result });
-        $("interviewResult").textContent = data.result + "\n\n✔ ಸಂದರ್ಶನ ಮತ್ತು ಸಾರಾಂಶ Google Sheet ನಲ್ಲಿ ಉಳಿಸಲಾಗಿದೆ.";
+        $("interviewResult").textContent = cleanAI(data.result) + "\n\n✔ ಸಂದರ್ಶನ ಮತ್ತು ಸಾರಾಂಶ Google Sheet ನಲ್ಲಿ ಉಳಿಸಲಾಗಿದೆ.";
         refreshAll();
       });
     });
@@ -324,7 +326,7 @@
     $("reportBtn").addEventListener("click", () => {
       withButton($("reportBtn"), $("reportResult"), "AI ವರದಿ ರಚಿಸುತ್ತಿದೆ...", async () => {
         const data = await api("report");
-        $("reportResult").textContent = data.result;
+        $("reportResult").textContent = cleanAI(data.result);
       });
     });
     $("reloadListBtn").addEventListener("click", refreshAll);
