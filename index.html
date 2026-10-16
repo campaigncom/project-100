@@ -14,94 +14,49 @@
       color: #172033;
       line-height: 1.6;
     }
-    header {
-      background: #101827;
-      color: white;
-      padding: 22px 16px;
-    }
+    header { background: #101827; color: white; padding: 22px 16px; }
     header h1 { margin: 0 0 8px; font-size: 25px; }
     header p { margin: 0; color: #cbd5e1; }
     nav {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 12px;
-      background: white;
-      border-bottom: 1px solid #e2e8f0;
+      display: flex; gap: 8px; overflow-x: auto; padding: 12px;
+      background: white; border-bottom: 1px solid #e2e8f0;
     }
     nav button {
-      flex-shrink: 0;
-      border: 1px solid #d7deea;
-      background: white;
-      color: #172033;
-      padding: 10px 12px;
-      border-radius: 8px;
-      font: inherit;
-      cursor: pointer;
+      flex-shrink: 0; border: 1px solid #d7deea; background: white; color: #172033;
+      padding: 10px 12px; border-radius: 8px; font: inherit; cursor: pointer;
     }
-    nav button.active {
-      background: #1d4ed8;
-      border-color: #1d4ed8;
-      color: white;
-    }
+    nav button.active { background: #1d4ed8; border-color: #1d4ed8; color: white; }
     button:focus-visible, input:focus-visible, textarea:focus-visible {
-      outline: 3px solid #93c5fd;
-      outline-offset: 2px;
+      outline: 3px solid #93c5fd; outline-offset: 2px;
     }
     main { padding: 16px; max-width: 850px; margin: auto; }
     .card {
-      background: white;
-      padding: 17px;
-      margin-bottom: 14px;
-      border-radius: 12px;
-      border: 1px solid #e2e8f0;
+      background: white; padding: 17px; margin-bottom: 14px;
+      border-radius: 12px; border: 1px solid #e2e8f0;
     }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-bottom: 14px;
-    }
+    .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 14px; }
     .cards .card { margin-bottom: 0; }
     .metric { font-size: 25px; font-weight: bold; margin-top: 10px; }
     h2 { font-size: 19px; margin-top: 0; }
     h3 { margin-top: 0; font-size: 16px; }
     label { font-weight: bold; font-size: 14px; }
     textarea, input {
-      width: 100%;
-      padding: 12px;
-      margin: 8px 0 12px;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      font: inherit;
-      background: white;
-      color: inherit;
+      width: 100%; padding: 12px; margin: 8px 0 12px; border: 1px solid #cbd5e1;
+      border-radius: 8px; font: inherit; background: white; color: inherit;
     }
     .action {
-      background: #1d4ed8;
-      color: white;
-      border: 0;
-      padding: 12px 15px;
-      border-radius: 8px;
-      cursor: pointer;
-      font: inherit;
+      background: #1d4ed8; color: white; border: 0; padding: 12px 15px;
+      border-radius: 8px; cursor: pointer; font: inherit; margin: 0 6px 8px 0;
     }
-    .action.secondary { background: #475569; margin-left: 6px; }
+    .action.secondary { background: #475569; }
     .action:disabled { opacity: .6; cursor: wait; }
-    .action.danger { background: #b91c1c; margin-top: 8px; }
     .muted { color: #64748b; font-size: 13px; }
     .result { white-space: pre-wrap; line-height: 1.7; margin-top: 12px; }
-    .record {
-      border-top: 1px solid #e2e8f0;
-      padding: 10px 0;
-      overflow-wrap: anywhere;
-    }
+    .record { border-top: 1px solid #e2e8f0; padding: 10px 0; overflow-wrap: anywhere; }
     .record:first-child { border-top: 0; }
+    .warn { background: #fef3c7; border: 1px solid #fcd34d; color: #78350f; }
     footer { text-align: center; padding: 20px; color: #64748b; }
-    @media (max-width: 400px) {
-      main { padding: 10px; }
-      .metric { font-size: 21px; }
-    }
+    @media (max-width: 400px) { main { padding: 10px; } .metric { font-size: 21px; } }
   </style>
 </head>
 <body>
@@ -119,38 +74,25 @@
   </nav>
 
   <main>
+    <div id="setupWarn" class="card warn" hidden>
+      Google Apps Script ಲಿಂಕ್ ಇನ್ನೂ ಹೊಂದಿಸಿಲ್ಲ. index.html ಫೈಲ್‌ನ ಮೇಲ್ಭಾಗದಲ್ಲಿರುವ SCRIPT_URL ನಲ್ಲಿ ನಿಮ್ಮ ವೆಬ್ ಆ್ಯಪ್ ಲಿಂಕ್ ಹಾಕಿ. ಅಲ್ಲಿಯವರೆಗೆ ಪದಾಧಾರಿತ ಪರಿಶೀಲನೆ ಮಾತ್ರ ಕೆಲಸ ಮಾಡುತ್ತದೆ.
+    </div>
+
     <section id="home" class="page">
       <h2>Political Intelligence Dashboard</h2>
       <p>ರಾಜಕೀಯ ಬೆಳವಣಿಗೆಗಳು ಮತ್ತು ಸಾರ್ವಜನಿಕ ಅಭಿಪ್ರಾಯಗಳ ವಿಶ್ಲೇಷಣಾ ಕೇಂದ್ರ.</p>
-
       <div class="cards">
-        <div class="card">
-          <h3>ಸಂದರ್ಶನಗಳು</h3>
-          <div class="metric" id="interviewCount">0</div>
-          <p class="muted">ದಾಖಲಿಸಿದ ಸಂದರ್ಶನಗಳು</p>
-        </div>
-        <div class="card">
-          <h3>ಅಭಿಪ್ರಾಯ ದಾಖಲೆಗಳು</h3>
-          <div class="metric" id="opinionCount">0</div>
-          <p class="muted">ಸಂಗ್ರಹಿಸಿದ ದಾಖಲೆಗಳು</p>
-        </div>
-        <div class="card">
-          <h3>ವಿಶ್ಲೇಷಣೆ</h3>
-          <div class="metric">Demo</div>
-          <p class="muted">ಮೂಲ ಆವೃತ್ತಿ</p>
-        </div>
-        <div class="card">
-          <h3>ಭಾಷೆ</h3>
-          <div class="metric">ಕನ್ನಡ</div>
-          <p class="muted">ಪ್ರಾಥಮಿಕ ಇಂಟರ್ಫೇಸ್</p>
-        </div>
+        <div class="card"><h3>ಸಂದರ್ಶನಗಳು</h3><div class="metric" id="interviewCount">–</div><p class="muted">ದಾಖಲಿಸಿದ ಸಂದರ್ಶನಗಳು</p></div>
+        <div class="card"><h3>ಅಭಿಪ್ರಾಯ ದಾಖಲೆಗಳು</h3><div class="metric" id="opinionCount">–</div><p class="muted">ಸಂಗ್ರಹಿಸಿದ ದಾಖಲೆಗಳು</p></div>
+        <div class="card"><h3>ವಿಶ್ಲೇಷಣೆ</h3><div class="metric">Gemini</div><p class="muted">Google AI Studio</p></div>
+        <div class="card"><h3>ಡೇಟಾ</h3><div class="metric">Sheets</div><p class="muted">Google Sheets ನಲ್ಲಿ ಉಳಿಯುತ್ತದೆ</p></div>
       </div>
-
       <div class="card">
         <h3>Project 100 ಉದ್ದೇಶ</h3>
         <p>ಸಂದರ್ಶನಗಳು, ಸಾರ್ವಜನಿಕ ಅಭಿಪ್ರಾಯಗಳು ಮತ್ತು ರಾಜಕೀಯ ವಿಷಯಗಳನ್ನು ಕ್ರಮಬದ್ಧವಾಗಿ ದಾಖಲಿಸಿ ವಿಶ್ಲೇಷಿಸುವುದು.</p>
-        <p class="muted">ಮೊದಲ ಹಂತ: ವಿನ್ಯಾಸ ಮತ್ತು ನ್ಯಾವಿಗೇಷನ್. ನಿಜವಾದ ಆಡಿಯೋ ವಿಶ್ಲೇಷಣೆ ಮತ್ತು ಡೇಟಾಬೇಸ್ ಅನ್ನು ಮುಂದಿನ ಹಂತಗಳಲ್ಲಿ ಸಂಪರ್ಕಿಸಲಾಗುವುದು.</p>
-        <p class="muted">ಸಂದರ್ಶನ ಮತ್ತು ಅಭಿಪ್ರಾಯ ಸಂಖ್ಯೆಗಳು ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಉಳಿಸಿದ ದಾಖಲೆಗಳನ್ನು ತೋರಿಸುತ್ತವೆ.</p>
+        <p class="muted">ನಿಜವಾದ ಆಡಿಯೋ ವಿಶ್ಲೇಷಣೆ ಮುಂದಿನ ಹಂತದಲ್ಲಿ ಸೇರಿಸಲಾಗುವುದು.</p>
+        <button type="button" class="action secondary" id="refreshBtn">ಸಂಖ್ಯೆಗಳನ್ನು ನವೀಕರಿಸಿ</button>
+        <div id="homeMsg" class="muted" aria-live="polite"></div>
       </div>
     </section>
 
@@ -158,12 +100,11 @@
       <div class="card">
         <h2>Political Mood Analysis</h2>
         <label for="moodText">ವಿಶ್ಲೇಷಿಸಬೇಕಾದ ಹೇಳಿಕೆ ಅಥವಾ ಅಭಿಪ್ರಾಯವನ್ನು ನಮೂದಿಸಿ.</label>
-        <textarea id="moodText" rows="5"
-          placeholder="ಉದಾ: ನಮ್ಮ ಪ್ರದೇಶದಲ್ಲಿ ಉದ್ಯೋಗದ ಅವಕಾಶಗಳು ಹೆಚ್ಚಬೇಕು..."></textarea>
+        <textarea id="moodText" rows="5" placeholder="ಉದಾ: ನಮ್ಮ ಪ್ರದೇಶದಲ್ಲಿ ಉದ್ಯೋಗದ ಅವಕಾಶಗಳು ಹೆಚ್ಚಬೇಕು..."></textarea>
         <button type="button" class="action" id="moodAiBtn">AI ವಿಶ್ಲೇಷಣೆ</button>
         <button type="button" class="action secondary" id="moodBtn">ಪದಾಧಾರಿತ ಪರಿಶೀಲನೆ</button>
         <div id="moodResult" class="result" aria-live="polite"></div>
-        <p class="muted">AI ವಿಶ್ಲೇಷಣೆಗೆ ಸರ್ವರ್ (api/analyze.js) ಅಗತ್ಯ. ಪದಾಧಾರಿತ ಪರಿಶೀಲನೆ ಇಂಟರ್ನೆಟ್ ಇಲ್ಲದೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ ಆದರೆ ಪ್ರಾಥಮಿಕ ಮಾತ್ರ.</p>
+        <p class="muted">ವೈಯಕ್ತಿಕ ಹೆಸರು, ಫೋನ್ ಸಂಖ್ಯೆ ತೆಗೆದು ಹಾಕಿ ಕಳುಹಿಸಿ. ಉಚಿತ Gemini ಹಂತದಲ್ಲಿ ಪಠ್ಯವನ್ನು Google ಬಳಸಬಹುದು.</p>
       </div>
     </section>
 
@@ -172,15 +113,12 @@
         <h2>Interview Analysis</h2>
         <label for="interviewTitle">ಸಂದರ್ಶನದ ಶೀರ್ಷಿಕೆ</label>
         <input id="interviewTitle" placeholder="ಉದಾ: ಸಾರ್ವಜನಿಕರ ಸಂದರ್ಶನ">
-
         <label for="interviewText">ಸಂದರ್ಶನದ ಲಿಖಿತ ಪ್ರತಿ</label>
-        <textarea id="interviewText" rows="6"
-          placeholder="ಸಂದರ್ಶನದ ಪಠ್ಯವನ್ನು ಇಲ್ಲಿ ನಮೂದಿಸಿ"></textarea>
-
-        <button type="button" class="action" id="interviewAiBtn">AI ಸಾರಾಂಶ</button>
+        <textarea id="interviewText" rows="6" placeholder="ಸಂದರ್ಶನದ ಪಠ್ಯವನ್ನು ಇಲ್ಲಿ ನಮೂದಿಸಿ"></textarea>
+        <button type="button" class="action" id="interviewAiBtn">AI ಸಾರಾಂಶ ಮತ್ತು ಉಳಿಸಿ</button>
         <button type="button" class="action secondary" id="interviewBtn">ಉಳಿಸಿ (AI ಇಲ್ಲದೆ)</button>
         <div id="interviewResult" class="result" aria-live="polite"></div>
-        <p class="muted">ಈ ಆವೃತ್ತಿಯಲ್ಲಿ ಆಡಿಯೋ ಅಪ್‌ಲೋಡ್ ಅಥವಾ ಸ್ವಯಂಚಾಲಿತ ಟ್ರಾನ್ಸ್‌ಕ್ರಿಪ್ಷನ್ ಇಲ್ಲ.</p>
+        <p class="muted">ಈ ಆವೃತ್ತಿಯಲ್ಲಿ ಆಡಿಯೋ ಅಪ್‌ಲೋಡ್ ಇಲ್ಲ. ಪಠ್ಯ ಮಾತ್ರ.</p>
       </div>
     </section>
 
@@ -190,247 +128,207 @@
         <label for="topic">ವಿಷಯ</label>
         <input id="topic" placeholder="ಉದಾ: ಉದ್ಯೋಗ, ರಸ್ತೆ, ಶಿಕ್ಷಣ">
         <label for="opinionText">ವ್ಯಕ್ತವಾದ ಅಭಿಪ್ರಾಯ</label>
-        <textarea id="opinionText" rows="4"
-          placeholder="ಅಭಿಪ್ರಾಯವನ್ನು ನಮೂದಿಸಿ"></textarea>
-        <button type="button" class="action" id="opinionBtn">ಈ ಸಾಧನದಲ್ಲಿ ಉಳಿಸಿ</button>
+        <textarea id="opinionText" rows="4" placeholder="ಅಭಿಪ್ರಾಯವನ್ನು ನಮೂದಿಸಿ"></textarea>
+        <button type="button" class="action" id="opinionBtn">Google Sheet ಗೆ ಉಳಿಸಿ</button>
         <div id="opinionResult" class="result" aria-live="polite"></div>
-        <p class="muted">ಪ್ರಸ್ತುತ ದಾಖಲೆಗಳು ಈ ಬ್ರೌಸರ್‌ನ ಸ್ಥಳೀಯ ಸಂಗ್ರಹದಲ್ಲಿ ಉಳಿಯುತ್ತವೆ; ಬೇರೆ ಸಾಧನಕ್ಕೆ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ವರ್ಗಾವಣೆಯಾಗುವುದಿಲ್ಲ.</p>
+        <p class="muted">ದಾಖಲೆಗಳು ನಿಮ್ಮ Google Sheet ನಲ್ಲಿ ಉಳಿಯುತ್ತವೆ.</p>
       </div>
     </section>
 
     <section id="reports" class="page" hidden>
       <div class="card">
         <h2>AI Reports · ವರದಿಗಳು</h2>
-        <h3>ಜನಾಭಿಪ್ರಾಯ ದಾಖಲೆಗಳು</h3>
-        <div id="opinionList"></div>
+        <p class="muted">ಇತ್ತೀಚಿನ ಜನಾಭಿಪ್ರಾಯ ದಾಖಲೆಗಳಿಂದ (ಗರಿಷ್ಠ 60) AI ವರದಿ ರಚಿಸುತ್ತದೆ.</p>
+        <button type="button" class="action" id="reportBtn">AI ವರದಿ ರಚಿಸಿ</button>
+        <button type="button" class="action secondary" id="reloadListBtn">ಪಟ್ಟಿ ನವೀಕರಿಸಿ</button>
+        <div id="reportResult" class="result" aria-live="polite"></div>
       </div>
-      <div class="card">
-        <h3>ಸಂದರ್ಶನ ದಾಖಲೆಗಳು</h3>
-        <div id="interviewList"></div>
-        <button type="button" class="action danger" id="clearBtn">ಎಲ್ಲಾ ದಾಖಲೆಗಳನ್ನು ಅಳಿಸಿ</button>
-        <p class="muted">ಈಗ ಯಾವುದೇ ನೈಜ ಡೇಟಾಬೇಸ್ ಅಥವಾ AI ಸೇವೆ ಸಂಪರ್ಕಗೊಂಡಿಲ್ಲ.</p>
-      </div>
+      <div class="card"><h3>ಇತ್ತೀಚಿನ ಜನಾಭಿಪ್ರಾಯಗಳು</h3><div id="opinionList"></div></div>
+      <div class="card"><h3>ಇತ್ತೀಚಿನ ಸಂದರ್ಶನಗಳು</h3><div id="interviewList"></div></div>
     </section>
   </main>
 
   <footer>PROJECT 100 · Political Intelligence</footer>
 
   <script>
-    const OPINION_KEY = "p100_opinions";
-    const INTERVIEW_KEY = "p100_interviews";
+    // ===== ಇಲ್ಲಿ ನಿಮ್ಮ Google Apps Script ವೆಬ್ ಆ್ಯಪ್ ಲಿಂಕ್ ಹಾಕಿ (https://script.google.com/macros/s/.../exec) =====
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxjra8qTyv8Y8f3JNhSXM-vqlTvgHftp6ydWRHEhmBscCfktBnjW34iAoFQxZn8Y7Yd/exec";
+    // ===========================================================================================
+
     const $ = id => document.getElementById(id);
+    let passcode = "";
+    try { passcode = sessionStorage.getItem("p100_pass") || ""; } catch (e) {}
 
-    function loadRecords(key) {
-      try {
-        const data = JSON.parse(localStorage.getItem(key) || "[]");
-        return Array.isArray(data) ? data : [];
-      } catch (e) {
-        return [];
+    if (!SCRIPT_URL) $("setupWarn").hidden = false;
+
+    async function api(action, payload) {
+      if (!SCRIPT_URL) throw new Error("SCRIPT_URL ಹೊಂದಿಸಿಲ್ಲ");
+      if (!passcode) {
+        passcode = (prompt("ಪಾಸ್‌ಕೋಡ್ ನಮೂದಿಸಿ") || "").trim();
+        try { sessionStorage.setItem("p100_pass", passcode); } catch (e) {}
       }
+      // No custom headers on purpose: avoids a CORS preflight that Apps Script cannot answer.
+      const res = await fetch(SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify(Object.assign({ action, passcode }, payload || {}))
+      });
+      let data;
+      try { data = await res.json(); } catch (e) { throw new Error("ಸರ್ವರ್ ಉತ್ತರ ಓದಲಾಗಲಿಲ್ಲ"); }
+      if (data.error) {
+        if (data.error === "unauthorized") {
+          passcode = "";
+          try { sessionStorage.removeItem("p100_pass"); } catch (e) {}
+          throw new Error("ಪಾಸ್‌ಕೋಡ್ ತಪ್ಪಾಗಿದೆ");
+        }
+        throw new Error(data.error);
+      }
+      return data;
     }
 
-    function saveRecords(key, records) {
-      try {
-        localStorage.setItem(key, JSON.stringify(records));
-        return true;
-      } catch (e) {
-        return false;
-      }
+    async function withButton(btn, outEl, busyText, fn) {
+      btn.disabled = true;
+      if (busyText) outEl.textContent = busyText;
+      try { await fn(); }
+      catch (err) { outEl.textContent = "ದೋಷ: " + err.message; }
+      finally { btn.disabled = false; }
     }
 
-    function formatDate(iso) {
+    function fmtDate(iso) {
       const d = new Date(iso);
       return isNaN(d) ? "" : d.toLocaleString("kn-IN");
     }
 
-    function renderList(containerId, records, titleOf, bodyOf) {
-      const box = $(containerId);
+    function renderList(id, rows, titleOf, bodyOf) {
+      const box = $(id);
       box.textContent = "";
-      if (!records.length) {
+      if (!rows.length) {
         const p = document.createElement("p");
         p.className = "muted";
         p.textContent = "ಇನ್ನೂ ಯಾವುದೇ ದಾಖಲೆ ಇಲ್ಲ.";
         box.appendChild(p);
         return;
       }
-      records.slice().reverse().forEach(r => {
+      rows.forEach(r => {
         const div = document.createElement("div");
         div.className = "record";
-        const t = document.createElement("strong");
-        t.textContent = titleOf(r);
-        const b = document.createElement("div");
-        b.textContent = bodyOf(r);
-        const d = document.createElement("div");
-        d.className = "muted";
-        d.textContent = formatDate(r.date);
+        const t = document.createElement("strong"); t.textContent = titleOf(r);
+        const b = document.createElement("div"); b.textContent = bodyOf(r);
+        const d = document.createElement("div"); d.className = "muted"; d.textContent = fmtDate(r.date);
         div.append(t, b, d);
         box.appendChild(div);
       });
     }
 
-    function refreshAll() {
-      const opinions = loadRecords(OPINION_KEY);
-      const interviews = loadRecords(INTERVIEW_KEY);
-      $("opinionCount").textContent = opinions.length;
-      $("interviewCount").textContent = interviews.length;
-      renderList("opinionList", opinions, r => r.topic, r => r.opinion);
-      renderList("interviewList", interviews,
-        r => r.title,
-        r => r.length + " ಅಕ್ಷರಗಳು — " + r.preview);
+    async function refreshAll() {
+      if (!SCRIPT_URL) return;
+      try {
+        const data = await api("list");
+        $("opinionCount").textContent = data.counts.opinions;
+        $("interviewCount").textContent = data.counts.interviews;
+        renderList("opinionList", data.opinions, r => r.topic, r => r.opinion);
+        renderList("interviewList", data.interviews, r => r.title,
+          r => r.length + " ಅಕ್ಷರಗಳು — " + (r.summary ? r.summary.slice(0, 200) : r.preview));
+        $("homeMsg").textContent = "";
+      } catch (err) {
+        $("homeMsg").textContent = "ಡೇಟಾ ಲೋಡ್ ಆಗಲಿಲ್ಲ: " + err.message;
+      }
     }
 
+    // ----- Navigation -----
     const buttons = document.querySelectorAll("nav button");
     const pages = document.querySelectorAll(".page");
-
     buttons.forEach(button => {
       button.addEventListener("click", () => {
-        pages.forEach(page => {
-          page.hidden = page.id !== button.dataset.page;
-        });
-        buttons.forEach(item => {
-          item.classList.remove("active");
-          item.removeAttribute("aria-current");
-        });
+        pages.forEach(p => { p.hidden = p.id !== button.dataset.page; });
+        buttons.forEach(b => { b.classList.remove("active"); b.removeAttribute("aria-current"); });
         button.classList.add("active");
         button.setAttribute("aria-current", "page");
-        refreshAll();
         window.scrollTo(0, 0);
+        if (button.dataset.page === "home" || button.dataset.page === "reports") refreshAll();
       });
     });
 
-    function analyzeText() {
+    // ----- Mood -----
+    function keywordMood() {
       const text = $("moodText").value.trim();
       const result = $("moodResult");
-
-      if (!text) {
-        result.textContent = "ಮೊದಲು ಹೇಳಿಕೆ ಅಥವಾ ಅಭಿಪ್ರಾಯವನ್ನು ನಮೂದಿಸಿ.";
-        return;
-      }
-
+      if (!text) { result.textContent = "ಮೊದಲು ಹೇಳಿಕೆ ಅಥವಾ ಅಭಿಪ್ರಾಯವನ್ನು ನಮೂದಿಸಿ."; return; }
       const positive = ["ಉತ್ತಮ", "ಚೆನ್ನಾಗಿದೆ", "ಬೆಂಬಲ", "ತೃಪ್ತಿ", "ಅಭಿವೃದ್ಧಿ"];
       const negative = ["ಕೆಟ್ಟ", "ವಿರೋಧ", "ಅಸಮಾಧಾನ", "ಸಮಸ್ಯೆ", "ಭ್ರಷ್ಟಾಚಾರ"];
       const lower = text.toLowerCase();
-      const pos = positive.filter(word => lower.includes(word));
-      const neg = negative.filter(word => lower.includes(word));
-
+      const pos = positive.filter(w => lower.includes(w));
+      const neg = negative.filter(w => lower.includes(w));
       let mood = "ಮಿಶ್ರ ಅಥವಾ ನಿರ್ಧರಿಸಲಾಗದ ಅಭಿಪ್ರಾಯ";
       if (pos.length && !neg.length) mood = "ಸಕಾರಾತ್ಮಕ ಪದಗಳಿವೆ";
       if (neg.length && !pos.length) mood = "ನಕಾರಾತ್ಮಕ ಪದಗಳಿವೆ";
       if (pos.length && neg.length) mood = "ಸಕಾರಾತ್ಮಕ ಮತ್ತು ನಕಾರಾತ್ಮಕ ಪದಗಳೆರಡೂ ಇವೆ";
-
       result.textContent =
         "ಪ್ರಾಥಮಿಕ ಪದಾಧಾರಿತ ಫಲಿತಾಂಶ: " + mood +
         "\nಗುರುತಿಸಿದ ಸಕಾರಾತ್ಮಕ ಪದಗಳು: " + (pos.join(", ") || "ಯಾವುದೂ ಇಲ್ಲ") +
         "\nಗುರುತಿಸಿದ ನಕಾರಾತ್ಮಕ ಪದಗಳು: " + (neg.join(", ") || "ಯಾವುದೂ ಇಲ್ಲ") +
         "\n\nಗಮನಿಸಿ: ಇದು ಸಂದರ್ಭ, ವ್ಯಂಗ್ಯ ಅಥವಾ ನಿಜವಾದ ಭಾವನೆಯನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುವುದಿಲ್ಲ.";
     }
+    $("moodBtn").addEventListener("click", keywordMood);
 
-    function prepareInterview() {
-      const title = $("interviewTitle").value.trim();
-      const text = $("interviewText").value.trim();
-      const result = $("interviewResult");
-
-      if (!text) {
-        result.textContent = "ಮೊದಲು ಸಂದರ್ಶನದ ಪಠ್ಯವನ್ನು ನಮೂದಿಸಿ.";
-        return;
-      }
-
-      const name = title || "ಹೆಸರಿಸದ ಸಂದರ್ಶನ";
-      const records = loadRecords(INTERVIEW_KEY);
-      records.push({
-        title: name,
-        length: text.length,
-        preview: text.slice(0, 120) + (text.length > 120 ? "…" : ""),
-        date: new Date().toISOString()
+    $("moodAiBtn").addEventListener("click", () => {
+      const text = $("moodText").value.trim();
+      if (!text) { $("moodResult").textContent = "ಮೊದಲು ಪಠ್ಯವನ್ನು ನಮೂದಿಸಿ."; return; }
+      withButton($("moodAiBtn"), $("moodResult"), "AI ವಿಶ್ಲೇಷಿಸುತ್ತಿದೆ...", async () => {
+        const data = await api("analyze", { mode: "mood", text });
+        $("moodResult").textContent = data.result;
       });
-      const saved = saveRecords(INTERVIEW_KEY, records);
+    });
 
-      result.textContent =
-        "ಶೀರ್ಷಿಕೆ: " + name +
-        "\nಪಠ್ಯದ ಉದ್ದ: " + text.length + " ಅಕ್ಷರಗಳು" +
-        "\n\nಪಠ್ಯ ಸ್ವೀಕರಿಸಲಾಗಿದೆ" +
-        (saved ? " ಮತ್ತು ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ದಾಖಲಿಸಲಾಗಿದೆ." : ", ಆದರೆ ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.") +
-        " ನೈಜ AI ಸಾರಾಂಶಕ್ಕಾಗಿ ಮುಂದಿನ ಆವೃತ್ತಿಯಲ್ಲಿ AI ಸೇವೆಯನ್ನು ಸಂಪರ್ಕಿಸಬೇಕು.";
-      refreshAll();
+    // ----- Interview -----
+    function interviewInputs() {
+      return { title: $("interviewTitle").value.trim(), text: $("interviewText").value.trim() };
     }
 
-    function saveOpinion() {
+    $("interviewBtn").addEventListener("click", () => {
+      const { title, text } = interviewInputs();
+      if (!text) { $("interviewResult").textContent = "ಮೊದಲು ಸಂದರ್ಶನದ ಪಠ್ಯವನ್ನು ನಮೂದಿಸಿ."; return; }
+      withButton($("interviewBtn"), $("interviewResult"), "ಉಳಿಸುತ್ತಿದೆ...", async () => {
+        await api("saveInterview", { title, text });
+        $("interviewResult").textContent = "ಸಂದರ್ಶನ Google Sheet ನಲ್ಲಿ ಉಳಿಸಲಾಗಿದೆ (" + text.length + " ಅಕ್ಷರಗಳು).";
+        refreshAll();
+      });
+    });
+
+    $("interviewAiBtn").addEventListener("click", () => {
+      const { title, text } = interviewInputs();
+      if (!text) { $("interviewResult").textContent = "ಮೊದಲು ಸಂದರ್ಶನದ ಪಠ್ಯವನ್ನು ನಮೂದಿಸಿ."; return; }
+      withButton($("interviewAiBtn"), $("interviewResult"), "AI ಸಾರಾಂಶ ಸಿದ್ಧಪಡಿಸುತ್ತಿದೆ...", async () => {
+        const data = await api("analyze", { mode: "interview", text });
+        $("interviewResult").textContent = data.result;
+        await api("saveInterview", { title, text, summary: data.result });
+        $("interviewResult").textContent = data.result + "\n\n✔ ಸಂದರ್ಶನ ಮತ್ತು ಸಾರಾಂಶ Google Sheet ನಲ್ಲಿ ಉಳಿಸಲಾಗಿದೆ.";
+        refreshAll();
+      });
+    });
+
+    // ----- Opinion -----
+    $("opinionBtn").addEventListener("click", () => {
       const topic = $("topic").value.trim();
       const opinion = $("opinionText").value.trim();
-      const result = $("opinionResult");
-
-      if (!topic || !opinion) {
-        result.textContent = "ವಿಷಯ ಮತ್ತು ಅಭಿಪ್ರಾಯ ಎರಡನ್ನೂ ನಮೂದಿಸಿ.";
-        return;
-      }
-
-      const records = loadRecords(OPINION_KEY);
-      records.push({ topic, opinion, date: new Date().toISOString() });
-
-      if (saveRecords(OPINION_KEY, records)) {
-        result.textContent = "ಅಭಿಪ್ರಾಯ ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಉಳಿಸಲಾಗಿದೆ.";
+      if (!topic || !opinion) { $("opinionResult").textContent = "ವಿಷಯ ಮತ್ತು ಅಭಿಪ್ರಾಯ ಎರಡನ್ನೂ ನಮೂದಿಸಿ."; return; }
+      withButton($("opinionBtn"), $("opinionResult"), "ಉಳಿಸುತ್ತಿದೆ...", async () => {
+        await api("saveOpinion", { topic, opinion });
+        $("opinionResult").textContent = "ಅಭಿಪ್ರಾಯ Google Sheet ನಲ್ಲಿ ಉಳಿಸಲಾಗಿದೆ.";
         $("topic").value = "";
         $("opinionText").value = "";
         refreshAll();
-      } else {
-        result.textContent = "ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಬ್ರೌಸರ್ ಸಂಗ್ರಹದ ಸೆಟ್ಟಿಂಗ್ ಪರಿಶೀಲಿಸಿ.";
-      }
-    }
-
-    function clearAll() {
-      if (!confirm("ಎಲ್ಲಾ ಉಳಿಸಿದ ದಾಖಲೆಗಳನ್ನು ಅಳಿಸಬೇಕೇ?")) return;
-      try {
-        localStorage.removeItem(OPINION_KEY);
-        localStorage.removeItem(INTERVIEW_KEY);
-      } catch (e) {}
-      refreshAll();
-    }
-
-    // ---- AI (calls the server file api/analyze.js; the API key never goes in this page) ----
-    const AI_ENDPOINT = "/api/analyze";
-
-    async function runAI(mode, text, resultEl, btn, prefix) {
-      prefix = prefix || "";
-      if (!text) {
-        resultEl.textContent = "ಮೊದಲು ಪಠ್ಯವನ್ನು ನಮೂದಿಸಿ.";
-        return;
-      }
-      btn.disabled = true;
-      resultEl.textContent = prefix + "AI ವಿಶ್ಲೇಷಿಸುತ್ತಿದೆ...";
-      try {
-        const res = await fetch(AI_ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ mode, text })
-        });
-        const data = await res.json().catch(() => ({}));
-        if (!res.ok || !data.result) {
-          throw new Error(data.error || "ಸರ್ವರ್ ದೋಷ (" + res.status + ")");
-        }
-        resultEl.textContent = prefix + data.result;
-      } catch (err) {
-        resultEl.textContent = prefix +
-          "AI ಸೇವೆ ಲಭ್ಯವಿಲ್ಲ: " + err.message +
-          "\nಸರ್ವರ್ ಸಿದ್ಧವಾಗಿದೆಯೇ ಮತ್ತು API ಕೀ ಹೊಂದಿಸಲಾಗಿದೆಯೇ ಎಂದು ಪರಿಶೀಲಿಸಿ.";
-      } finally {
-        btn.disabled = false;
-      }
-    }
-
-    $("moodAiBtn").addEventListener("click", () =>
-      runAI("mood", $("moodText").value.trim(), $("moodResult"), $("moodAiBtn")));
-
-    $("interviewAiBtn").addEventListener("click", () => {
-      const text = $("interviewText").value.trim();
-      if (!text) { $("interviewResult").textContent = "ಮೊದಲು ಸಂದರ್ಶನದ ಪಠ್ಯವನ್ನು ನಮೂದಿಸಿ."; return; }
-      prepareInterview(); // saves the record
-      runAI("interview", text, $("interviewResult"), $("interviewAiBtn"), "ದಾಖಲೆ ಉಳಿಸಲಾಗಿದೆ.\n\n");
+      });
     });
 
-    $("moodBtn").addEventListener("click", analyzeText);
-    $("interviewBtn").addEventListener("click", prepareInterview);
-    $("opinionBtn").addEventListener("click", saveOpinion);
-    $("clearBtn").addEventListener("click", clearAll);
+    // ----- Reports -----
+    $("reportBtn").addEventListener("click", () => {
+      withButton($("reportBtn"), $("reportResult"), "AI ವರದಿ ರಚಿಸುತ್ತಿದೆ...", async () => {
+        const data = await api("report");
+        $("reportResult").textContent = data.result;
+      });
+    });
+    $("reloadListBtn").addEventListener("click", refreshAll);
+    $("refreshBtn").addEventListener("click", refreshAll);
 
     refreshAll();
   </script>
