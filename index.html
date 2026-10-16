@@ -111,11 +111,11 @@
   </header>
 
   <nav aria-label="ಮುಖ್ಯ ಮೆನು">
-    <button type="button" class="active" data-page="home">ಡ್ಯಾಶ್‌ಬೋರ್ಡ್</button>
+    <button type="button" class="active" data-page="home">Dashboard</button>
     <button type="button" data-page="mood">Mood Analysis</button>
-    <button type="button" data-page="interview">ಸಂದರ್ಶನ</button>
-    <button type="button" data-page="opinion">ಜನಾಭಿಪ್ರಾಯ</button>
-    <button type="button" data-page="reports">ವರದಿಗಳು</button>
+    <button type="button" data-page="interview">Interview Analysis</button>
+    <button type="button" data-page="opinion">Public Opinion</button>
+    <button type="button" data-page="reports">AI Reports</button>
   </nav>
 
   <main>
@@ -149,6 +149,7 @@
       <div class="card">
         <h3>Project 100 ಉದ್ದೇಶ</h3>
         <p>ಸಂದರ್ಶನಗಳು, ಸಾರ್ವಜನಿಕ ಅಭಿಪ್ರಾಯಗಳು ಮತ್ತು ರಾಜಕೀಯ ವಿಷಯಗಳನ್ನು ಕ್ರಮಬದ್ಧವಾಗಿ ದಾಖಲಿಸಿ ವಿಶ್ಲೇಷಿಸುವುದು.</p>
+        <p class="muted">ಮೊದಲ ಹಂತ: ವಿನ್ಯಾಸ ಮತ್ತು ನ್ಯಾವಿಗೇಷನ್. ನಿಜವಾದ ಆಡಿಯೋ ವಿಶ್ಲೇಷಣೆ ಮತ್ತು ಡೇಟಾಬೇಸ್ ಅನ್ನು ಮುಂದಿನ ಹಂತಗಳಲ್ಲಿ ಸಂಪರ್ಕಿಸಲಾಗುವುದು.</p>
         <p class="muted">ಸಂದರ್ಶನ ಮತ್ತು ಅಭಿಪ್ರಾಯ ಸಂಖ್ಯೆಗಳು ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಉಳಿಸಿದ ದಾಖಲೆಗಳನ್ನು ತೋರಿಸುತ್ತವೆ.</p>
       </div>
     </section>
@@ -185,7 +186,7 @@
 
     <section id="opinion" class="page" hidden>
       <div class="card">
-        <h2>ಜನಾಭಿಪ್ರಾಯ ದಾಖಲೆ</h2>
+        <h2>Public Opinion · ಜನಾಭಿಪ್ರಾಯ ದಾಖಲೆ</h2>
         <label for="topic">ವಿಷಯ</label>
         <input id="topic" placeholder="ಉದಾ: ಉದ್ಯೋಗ, ರಸ್ತೆ, ಶಿಕ್ಷಣ">
         <label for="opinionText">ವ್ಯಕ್ತವಾದ ಅಭಿಪ್ರಾಯ</label>
@@ -199,7 +200,7 @@
 
     <section id="reports" class="page" hidden>
       <div class="card">
-        <h2>ವರದಿಗಳು</h2>
+        <h2>AI Reports · ವರದಿಗಳು</h2>
         <h3>ಜನಾಭಿಪ್ರಾಯ ದಾಖಲೆಗಳು</h3>
         <div id="opinionList"></div>
       </div>
