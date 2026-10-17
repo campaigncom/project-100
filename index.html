@@ -102,6 +102,11 @@
         <button type="button" class="action" id="shareFormBtn" hidden>ಲಿಂಕ್ ಹಂಚಿ / ನಕಲಿಸಿ</button>
       </div>
       <div class="card">
+        <h3>ಜನಾಭಿಪ್ರಾಯ ಅಂಕಿಅಂಶ (ಎಲ್ಲಾ ಕ್ಷೇತ್ರ)</h3>
+        <div id="statsBox" class="result">–</div>
+        <p class="muted">ಇದು ಉತ್ತರ ನೀಡಿದವರ ಸ್ವಯಂ ವರದಿ ಮಾತ್ರ. ಇದು ಚುನಾವಣಾ ಫಲಿತಾಂಶದ ಭವಿಷ್ಯ ಅಥವಾ ಇಡೀ ಕ್ಷೇತ್ರದ ಪ್ರತಿನಿಧಿ ಚಿತ್ರಣ ಅಲ್ಲ.</p>
+      </div>
+      <div class="card">
         <h3>ಸುದ್ದಿ ಸ್ವಯಂ ಸಂಗ್ರಹ</h3>
         <label for="topicsInput">ವಿಷಯಗಳು (ಕಾಮಾದಿಂದ ಬೇರ್ಪಡಿಸಿ, ಗರಿಷ್ಠ 5)</label>
         <input id="topicsInput" placeholder="ಉದಾ: ಕರ್ನಾಟಕ ರಾಜಕೀಯ, ಬೆಂಗಳೂರು ರಸ್ತೆ">
@@ -143,9 +148,17 @@
         <h2>Public Opinion · ಜನಾಭಿಪ್ರಾಯ ದಾಖಲೆ</h2>
         <label for="opinionArea">ಕ್ಷೇತ್ರ</label>
         <select id="opinionArea"><option value="">— ಕ್ಷೇತ್ರ ಆರಿಸಿ —</option></select>
-        <label for="topic">ವಿಷಯ</label>
-        <input id="topic" placeholder="ಉದಾ: ಉದ್ಯೋಗ, ರಸ್ತೆ, ಶಿಕ್ಷಣ">
-        <label for="opinionText">ವ್ಯಕ್ತವಾದ ಅಭಿಪ್ರಾಯ</label>
+        <label for="opinionParty">ಪಕ್ಷ ಬೆಂಬಲ</label>
+        <select id="opinionParty"><option value="">— ಆರಿಸಿ —</option><option>ಬಿಜೆಪಿ</option><option>ಜೆಡಿಎಸ್</option><option>ಕಾಂಗ್ರೆಸ್</option><option>ಪಕ್ಷೇತರ</option><option>ಇತರೆ / ಹೇಳಲು ಇಷ್ಟವಿಲ್ಲ</option></select>
+        <label for="opinionBasis">ಮತ ಹಾಕುವಾಗ ಯಾವುದನ್ನು ನೋಡುತ್ತಾರೆ</label>
+        <select id="opinionBasis"><option value="">— ಆರಿಸಿ —</option><option>ಪಕ್ಷ</option><option>ಅಭ್ಯರ್ಥಿ (ವ್ಯಕ್ತಿ)</option><option>ಎರಡೂ ಸಮಾನ</option><option>ಗೊತ್ತಿಲ್ಲ</option></select>
+        <label for="topic">ಮೊದಲು ಗಮನ ಕೊಡಬೇಕಾದ ವಿಷಯ</label>
+        <select id="topic"><option value="">— ಆರಿಸಿ —</option><option>ಕೃಷಿ</option><option>ಉದ್ಯೋಗ</option><option>ಮೂಲಸೌಕರ್ಯ</option><option>ಕುಡಿಯುವ ನೀರು</option><option>ಆರೋಗ್ಯ</option><option>ಶಿಕ್ಷಣ</option><option>ಭ್ರಷ್ಟಾಚಾರ ತಡೆ</option><option>ಇತರೆ</option></select>
+        <label for="opinionSat">ಆ ವಿಷಯದಲ್ಲಿ ಕ್ಷೇತ್ರದ ಸ್ಥಿತಿಯ ಬಗ್ಗೆ ತೃಪ್ತಿ</label>
+        <select id="opinionSat"><option value="">— ಆರಿಸಿ —</option><option value="1">1 (ತುಂಬಾ ಅತೃಪ್ತಿ)</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5 (ತುಂಬಾ ತೃಪ್ತಿ)</option></select>
+        <label for="opinionMla">ಶಾಸಕರ ಕೆಲಸ ಹೇಗಿದೆ</label>
+        <select id="opinionMla"><option value="">— ಆರಿಸಿ —</option><option>ತುಂಬಾ ಉತ್ತಮ</option><option>ಉತ್ತಮ</option><option>ಸಾಧಾರಣ</option><option>ಕಳಪೆ</option><option>ಗೊತ್ತಿಲ್ಲ</option></select>
+        <label for="opinionText">ವ್ಯಕ್ತವಾದ ಅಭಿಪ್ರಾಯ (ಐಚ್ಛಿಕ)</label>
         <textarea id="opinionText" rows="4" placeholder="ಅಭಿಪ್ರಾಯವನ್ನು ನಮೂದಿಸಿ"></textarea>
         <button type="button" class="action" id="opinionBtn">Google Sheet ಗೆ ಉಳಿಸಿ</button>
         <div id="opinionResult" class="result" aria-live="polite"></div>
@@ -305,7 +318,27 @@
       $("latestDigest").textContent = data.latestDigest
         ? fmtDate(data.latestDigest.date) + " · " + data.latestDigest.count + " ಹೊಸ ಸುದ್ದಿ\n\n" + cleanAI(data.latestDigest.summary)
         : "ಇನ್ನೂ ಸುದ್ದಿ ಸಾರಾಂಶ ಇಲ್ಲ.";
+      $("statsBox").textContent = statLines(data.stats);
       renderNews(data.news);
+    }
+
+    function fmtCounts(o) {
+      const e = Object.keys(o || {}).map(k => [k, o[k]]).sort((a, b) => b[1] - a[1]);
+      if (!e.length) return "—";
+      const tot = e.reduce((s, x) => s + x[1], 0);
+      return e.map(x => x[0] + " " + x[1] + " (" + Math.round(x[1] * 100 / tot) + "%)").join(", ");
+    }
+
+    function statLines(st) {
+      if (!st || !st.n) return "ಇನ್ನೂ ಅಂಕಿಅಂಶ ಇಲ್ಲ.";
+      let t = "ಉತ್ತರಗಳು: " + st.n +
+        "\nಪಕ್ಷ: " + fmtCounts(st.party) +
+        "\nಮತ ನಿರ್ಧಾರ: " + fmtCounts(st.basis) +
+        "\nಆದ್ಯತೆಯ ವಿಷಯ: " + fmtCounts(st.topic) +
+        "\nಸರಾಸರಿ ತೃಪ್ತಿ (1-5): " + (st.satAvg == null ? "—" : st.satAvg) +
+        "\nಶಾಸಕರ ಕೆಲಸ: " + fmtCounts(st.mla);
+      if (st.n < 30) t += "\n⚠ ಮಾದರಿ ಚಿಕ್ಕದು (30 ಕ್ಕಿಂತ ಕಡಿಮೆ). ಇದನ್ನು ಕ್ಷೇತ್ರದ ನಿಜ ಚಿತ್ರಣ ಎಂದು ಪರಿಗಣಿಸಬೇಡಿ.";
+      return t;
     }
 
     let areaData = [];
@@ -364,7 +397,10 @@
             out.textContent = cleanAI(data.result);
           });
         });
-        d.append(sm, b, cnt, rb, out);
+        const sb = document.createElement("div");
+        sb.className = "result";
+        sb.textContent = statLines(a.stat);
+        d.append(sm, b, cnt, sb, rb, out);
         box.appendChild(d);
       });
     }
@@ -393,7 +429,9 @@
         $("interviewCount").textContent = data.counts.interviews;
         $("newsCount").textContent = data.counts.news || 0;
         showExtras(data);
-        renderList("opinionList", data.opinions, r => (r.area ? r.area + " · " : "") + r.topic, r => r.opinion);
+        renderList("opinionList", data.opinions, r => (r.area ? r.area + " · " : "") + r.topic,
+          r => [r.party, r.basis, r.sat ? "ತೃಪ್ತಿ " + r.sat : "", r.mla].filter(Boolean).join(" · ") +
+               (r.opinion ? "\n" + r.opinion : ""));
         renderList("interviewList", data.interviews, r => r.title,
           r => r.length + " ಅಕ್ಷರಗಳು — " + (r.summary ? cleanAI(r.summary).slice(0, 200) : r.preview));
         $("homeMsg").textContent = "";
@@ -481,12 +519,20 @@
       const opinion = $("opinionText").value.trim();
       const area = $("opinionArea").value;
       if (areaData.length && !area) { $("opinionResult").textContent = "ಮೊದಲು ಕ್ಷೇತ್ರ ಆರಿಸಿ."; return; }
-      if (!topic || !opinion) { $("opinionResult").textContent = "ವಿಷಯ ಮತ್ತು ಅಭಿಪ್ರಾಯ ಎರಡನ್ನೂ ನಮೂದಿಸಿ."; return; }
+      if (!topic) { $("opinionResult").textContent = "ಮೊದಲು ವಿಷಯ ಆರಿಸಿ."; return; }
       withButton($("opinionBtn"), $("opinionResult"), "ಉಳಿಸುತ್ತಿದೆ...", async () => {
-        await api("saveOpinion", { topic, opinion, area });
+        await api("saveOpinion", {
+          topic, opinion, area,
+          party: $("opinionParty").value, basis: $("opinionBasis").value,
+          satisfaction: $("opinionSat").value, mla: $("opinionMla").value
+        });
         $("opinionResult").textContent = "ಅಭಿಪ್ರಾಯ Google Sheet ನಲ್ಲಿ ಉಳಿಸಲಾಗಿದೆ.";
         $("topic").value = "";
         $("opinionText").value = "";
+        $("opinionParty").value = "";
+        $("opinionBasis").value = "";
+        $("opinionSat").value = "";
+        $("opinionMla").value = "";
         refreshAll();
       });
     });
