@@ -26,7 +26,7 @@
       padding: 10px 12px; border-radius: 8px; font: inherit; cursor: pointer;
     }
     nav button.active { background: #1d4ed8; border-color: #1d4ed8; color: white; }
-    button:focus-visible, input:focus-visible, textarea:focus-visible {
+    button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
       outline: 3px solid #93c5fd; outline-offset: 2px;
     }
     main { padding: 16px; max-width: 850px; margin: auto; }
@@ -40,7 +40,7 @@
     h2 { font-size: 19px; margin-top: 0; }
     h3 { margin-top: 0; font-size: 16px; }
     label { font-weight: bold; font-size: 14px; }
-    textarea, input {
+    textarea, input, select {
       width: 100%; padding: 12px; margin: 8px 0 12px; border: 1px solid #cbd5e1;
       border-radius: 8px; font: inherit; background: white; color: inherit;
     }
@@ -70,6 +70,7 @@
     <button type="button" data-page="mood">Mood Analysis</button>
     <button type="button" data-page="interview">Interview Analysis</button>
     <button type="button" data-page="opinion">Public Opinion</button>
+    <button type="button" data-page="areas">ಕ್ಷೇತ್ರಗಳು</button>
     <button type="button" data-page="reports">AI Reports</button>
   </nav>
 
@@ -85,7 +86,7 @@
         <div class="card"><h3>ಸಂದರ್ಶನಗಳು</h3><div class="metric" id="interviewCount">–</div><p class="muted">ದಾಖಲಿಸಿದ ಸಂದರ್ಶನಗಳು</p></div>
         <div class="card"><h3>ಅಭಿಪ್ರಾಯ ದಾಖಲೆಗಳು</h3><div class="metric" id="opinionCount">–</div><p class="muted">ಸಂಗ್ರಹಿಸಿದ ದಾಖಲೆಗಳು</p></div>
         <div class="card"><h3>ವಿಶ್ಲೇಷಣೆ</h3><div class="metric">Gemini</div><p class="muted">Google AI Studio</p></div>
-        <div class="card"><h3>ಡೇಟಾ</h3><div class="metric">Sheets</div><p class="muted">Google Sheets ನಲ್ಲಿ ಉಳಿಯುತ್ತದೆ</p></div>
+        <div class="card"><h3>ಸುದ್ದಿಗಳು</h3><div class="metric" id="newsCount">–</div><p class="muted">ಸ್ವಯಂ ಸಂಗ್ರಹಿಸಿದ ಸುದ್ದಿಗಳು</p></div>
       </div>
       <div class="card">
         <h3>Project 100 ಉದ್ದೇಶ</h3>
@@ -93,6 +94,21 @@
         <p class="muted">ನಿಜವಾದ ಆಡಿಯೋ ವಿಶ್ಲೇಷಣೆ ಮುಂದಿನ ಹಂತದಲ್ಲಿ ಸೇರಿಸಲಾಗುವುದು.</p>
         <button type="button" class="action secondary" id="refreshBtn">ಸಂಖ್ಯೆಗಳನ್ನು ನವೀಕರಿಸಿ</button>
         <div id="homeMsg" class="muted" aria-live="polite"></div>
+      </div>
+      <div class="card">
+        <h3>ಜನರಿಗೆ ಹಂಚುವ ಅಭಿಪ್ರಾಯ ಫಾರ್ಮ್</h3>
+        <p class="muted">ಈ ಲಿಂಕ್ ಅನ್ನು WhatsApp ನಲ್ಲಿ ಹಂಚಿ. ಜನರು ತುಂಬಿದ ಅಭಿಪ್ರಾಯಗಳು ತಾನಾಗಿ ಇಲ್ಲಿಗೆ ಬರುತ್ತವೆ.</p>
+        <div id="formLink" class="result">ಇನ್ನೂ ಸಿದ್ಧವಾಗಿಲ್ಲ. Apps Script ನಲ್ಲಿ setupAll ಚಲಾಯಿಸಿ.</div>
+        <button type="button" class="action" id="shareFormBtn" hidden>ಲಿಂಕ್ ಹಂಚಿ / ನಕಲಿಸಿ</button>
+      </div>
+      <div class="card">
+        <h3>ಸುದ್ದಿ ಸ್ವಯಂ ಸಂಗ್ರಹ</h3>
+        <label for="topicsInput">ವಿಷಯಗಳು (ಕಾಮಾದಿಂದ ಬೇರ್ಪಡಿಸಿ, ಗರಿಷ್ಠ 5)</label>
+        <input id="topicsInput" placeholder="ಉದಾ: ಕರ್ನಾಟಕ ರಾಜಕೀಯ, ಬೆಂಗಳೂರು ರಸ್ತೆ">
+        <button type="button" class="action" id="saveTopicsBtn">ವಿಷಯ ಉಳಿಸಿ</button>
+        <button type="button" class="action secondary" id="newsNowBtn">ಈಗಲೇ ಸುದ್ದಿ ಸಂಗ್ರಹಿಸಿ</button>
+        <div id="newsMsg" class="result" aria-live="polite"></div>
+        <p class="muted">ಪ್ರತಿದಿನ ಬೆಳಿಗ್ಗೆ ತಾನಾಗಿ ಸುದ್ದಿ ಸಂಗ್ರಹವಾಗುತ್ತದೆ.</p>
       </div>
     </section>
 
@@ -125,6 +141,8 @@
     <section id="opinion" class="page" hidden>
       <div class="card">
         <h2>Public Opinion · ಜನಾಭಿಪ್ರಾಯ ದಾಖಲೆ</h2>
+        <label for="opinionArea">ಕ್ಷೇತ್ರ</label>
+        <select id="opinionArea"><option value="">— ಕ್ಷೇತ್ರ ಆರಿಸಿ —</option></select>
         <label for="topic">ವಿಷಯ</label>
         <input id="topic" placeholder="ಉದಾ: ಉದ್ಯೋಗ, ರಸ್ತೆ, ಶಿಕ್ಷಣ">
         <label for="opinionText">ವ್ಯಕ್ತವಾದ ಅಭಿಪ್ರಾಯ</label>
@@ -135,14 +153,40 @@
       </div>
     </section>
 
+    <section id="areas" class="page" hidden>
+      <div class="card">
+        <h2>ಕ್ಷೇತ್ರವಾರು ಸುದ್ದಿ ಸಾರಾಂಶ</h2>
+        <label for="areaList">ಕ್ಷೇತ್ರಗಳ ಪಟ್ಟಿ (ಒಂದು ಸಾಲಿಗೆ ಒಂದು ಕ್ಷೇತ್ರ)</label>
+        <textarea id="areaList" rows="8" placeholder="ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ ಪೂರ್ವ | ಹುಬ್ಬಳ್ಳಿ ಧಾರವಾಡ ಪೂರ್ವ ಶಾಸಕ&#10;ಶಿವಮೊಗ್ಗ ನಗರ&#10;ಮೈಸೂರು | ಮೈಸೂರು ರಾಜಕೀಯ"></textarea>
+        <p class="muted">"|" ನ ನಂತರದ ಭಾಗ ಐಚ್ಛಿಕ: ಸುದ್ದಿ ಹುಡುಕಲು ಬಳಸುವ ಪದಗಳು. ಇಲ್ಲದಿದ್ದರೆ ಕ್ಷೇತ್ರದ ಹೆಸರೇ ಬಳಕೆಯಾಗುತ್ತದೆ. ಗರಿಷ್ಠ 200 ಕ್ಷೇತ್ರ.</p>
+        <button type="button" class="action" id="saveAreasBtn">ಪಟ್ಟಿ ಉಳಿಸಿ</button>
+        <label for="batchInput">ಪ್ರತಿದಿನ ಎಷ್ಟು ಕ್ಷೇತ್ರ ಪರಿಶೀಲಿಸಬೇಕು (1–25)</label>
+        <input id="batchInput" type="number" min="1" max="25" value="10">
+        <button type="button" class="action secondary" id="saveBatchBtn">ಸಂಖ್ಯೆ ಉಳಿಸಿ</button>
+        <button type="button" class="action secondary" id="runAreasBtn">ಮುಂದಿನ ಗುಂಪನ್ನು ಈಗಲೇ ಚಲಾಯಿಸಿ</button>
+        <button type="button" class="action secondary" id="syncFormBtn">ಫಾರ್ಮ್‌ನ ಕ್ಷೇತ್ರ ಪಟ್ಟಿ ನವೀಕರಿಸಿ</button>
+        <div id="areaMsg" class="result" aria-live="polite"></div>
+        <p class="muted">ಪ್ರತಿದಿನ ಬೆಳಿಗ್ಗೆ ಅತ್ಯಂತ ಹಳೆಯದಾಗಿ ಪರಿಶೀಲಿಸಿದ ಕ್ಷೇತ್ರಗಳಿಂದ ಆರಂಭಿಸಿ ಸರದಿಯಲ್ಲಿ ತಾನಾಗಿ ನಡೆಯುತ್ತದೆ. 100 ಕ್ಷೇತ್ರ ಮತ್ತು ದಿನಕ್ಕೆ 10 ಆದರೆ 10 ದಿನಕ್ಕೊಮ್ಮೆ ಎಲ್ಲಾ ಕ್ಷೇತ್ರಗಳು ನವೀಕರಣಗೊಳ್ಳುತ್ತವೆ.</p>
+      </div>
+      <div class="card">
+        <h3>ಕ್ಷೇತ್ರಗಳು</h3>
+        <input id="areaSearch" placeholder="ಕ್ಷೇತ್ರ ಹುಡುಕಿ">
+        <div id="areaResults"></div>
+      </div>
+    </section>
+
     <section id="reports" class="page" hidden>
       <div class="card">
         <h2>AI Reports · ವರದಿಗಳು</h2>
         <p class="muted">ಇತ್ತೀಚಿನ ಜನಾಭಿಪ್ರಾಯ ದಾಖಲೆಗಳಿಂದ (ಗರಿಷ್ಠ 60) AI ವರದಿ ರಚಿಸುತ್ತದೆ.</p>
         <button type="button" class="action" id="reportBtn">AI ವರದಿ ರಚಿಸಿ</button>
+        <button type="button" class="action secondary" id="weeklyBtn">ವಾರದ ವರದಿ ಈಗಲೇ</button>
         <button type="button" class="action secondary" id="reloadListBtn">ಪಟ್ಟಿ ನವೀಕರಿಸಿ</button>
         <div id="reportResult" class="result" aria-live="polite"></div>
       </div>
+      <div class="card"><h3>ಇತ್ತೀಚಿನ ವಾರದ ವರದಿ (ಪ್ರತಿ ಸೋಮವಾರ ತಾನಾಗಿ)</h3><div id="latestReport" class="result">–</div></div>
+      <div class="card"><h3>ಇತ್ತೀಚಿನ ಸುದ್ದಿ ಸಾರಾಂಶ</h3><div id="latestDigest" class="result">–</div></div>
+      <div class="card"><h3>ಇತ್ತೀಚಿನ ಸುದ್ದಿ ಶೀರ್ಷಿಕೆಗಳು</h3><div id="newsList"></div></div>
       <div class="card"><h3>ಇತ್ತೀಚಿನ ಜನಾಭಿಪ್ರಾಯಗಳು</h3><div id="opinionList"></div></div>
       <div class="card"><h3>ಇತ್ತೀಚಿನ ಸಂದರ್ಶನಗಳು</h3><div id="interviewList"></div></div>
     </section>
@@ -221,13 +265,135 @@
       });
     }
 
+    function renderNews(rows) {
+      const box = $("newsList");
+      box.textContent = "";
+      if (!rows || !rows.length) {
+        const p = document.createElement("p");
+        p.className = "muted";
+        p.textContent = "ಇನ್ನೂ ಸುದ್ದಿ ಸಂಗ್ರಹವಾಗಿಲ್ಲ.";
+        box.appendChild(p);
+        return;
+      }
+      rows.forEach(r => {
+        const div = document.createElement("div");
+        div.className = "record";
+        const a = document.createElement("a");
+        a.textContent = r.title;
+        if (/^https?:\/\//.test(r.link)) { a.href = r.link; a.target = "_blank"; a.rel = "noopener noreferrer"; }
+        const m = document.createElement("div");
+        m.className = "muted";
+        m.textContent = [r.topic, r.source, fmtDate(r.date)].filter(Boolean).join(" · ");
+        div.append(a, m);
+        box.appendChild(div);
+      });
+    }
+
+    function showExtras(data) {
+      // form link
+      if (data.formUrl) {
+        $("formLink").textContent = data.formUrl;
+        $("shareFormBtn").hidden = false;
+        $("shareFormBtn").dataset.url = data.formUrl;
+      }
+      // topics (do not overwrite while typing)
+      if (document.activeElement !== $("topicsInput")) $("topicsInput").value = data.topics || "";
+      // reports and news
+      $("latestReport").textContent = data.latestReport
+        ? fmtDate(data.latestReport.date) + "\n\n" + cleanAI(data.latestReport.report)
+        : "ಇನ್ನೂ ವರದಿ ಇಲ್ಲ. ಮೊದಲ ವರದಿ ಸೋಮವಾರ ತಾನಾಗಿ ಬರುತ್ತದೆ, ಅಥವಾ \"ವಾರದ ವರದಿ ಈಗಲೇ\" ಒತ್ತಿ.";
+      $("latestDigest").textContent = data.latestDigest
+        ? fmtDate(data.latestDigest.date) + " · " + data.latestDigest.count + " ಹೊಸ ಸುದ್ದಿ\n\n" + cleanAI(data.latestDigest.summary)
+        : "ಇನ್ನೂ ಸುದ್ದಿ ಸಾರಾಂಶ ಇಲ್ಲ.";
+      renderNews(data.news);
+    }
+
+    let areaData = [];
+
+    function fillAreaSelect() {
+      const sel = $("opinionArea");
+      const cur = sel.value;
+      sel.textContent = "";
+      const first = document.createElement("option");
+      first.value = "";
+      first.textContent = "— ಕ್ಷೇತ್ರ ಆರಿಸಿ —";
+      sel.appendChild(first);
+      areaData.forEach(a => {
+        const o = document.createElement("option");
+        o.value = a.name;
+        o.textContent = a.name;
+        sel.appendChild(o);
+      });
+      sel.value = cur;
+    }
+
+    function renderAreas() {
+      const q = $("areaSearch").value.trim().toLowerCase();
+      const box = $("areaResults");
+      box.textContent = "";
+      const rows = areaData.filter(a => !q || String(a.name).toLowerCase().includes(q));
+      if (!rows.length) {
+        const p = document.createElement("p");
+        p.className = "muted";
+        p.textContent = areaData.length ? "ಹುಡುಕಾಟಕ್ಕೆ ಹೊಂದುವ ಕ್ಷೇತ್ರ ಇಲ್ಲ." : "ಇನ್ನೂ ಕ್ಷೇತ್ರಗಳನ್ನು ಸೇರಿಸಿಲ್ಲ.";
+        box.appendChild(p);
+        return;
+      }
+      rows.forEach(a => {
+        const d = document.createElement("details");
+        d.className = "record";
+        const sm = document.createElement("summary");
+        sm.textContent = a.name + (a.latest
+          ? " — " + fmtDate(a.latest.date) + " (" + a.latest.count + " ಸುದ್ದಿ)"
+          : " — ಇನ್ನೂ ಪರಿಶೀಲಿಸಿಲ್ಲ");
+        const b = document.createElement("div");
+        b.className = "result";
+        b.textContent = a.latest ? cleanAI(a.latest.summary) : "ಇನ್ನೂ ಸಾರಾಂಶ ಇಲ್ಲ.";
+        const cnt = document.createElement("p");
+        cnt.className = "muted";
+        cnt.textContent = "ಜನಾಭಿಪ್ರಾಯ ದಾಖಲೆಗಳು: " + (a.opinions || 0);
+        const rb = document.createElement("button");
+        rb.type = "button";
+        rb.className = "action secondary";
+        rb.textContent = "ಈ ಕ್ಷೇತ್ರದ ಜನಾಭಿಪ್ರಾಯ ವರದಿ";
+        const out = document.createElement("div");
+        out.className = "result";
+        rb.addEventListener("click", () => {
+          withButton(rb, out, "ವರದಿ ರಚಿಸುತ್ತಿದೆ...", async () => {
+            const data = await api("report", { area: a.name });
+            out.textContent = cleanAI(data.result);
+          });
+        });
+        d.append(sm, b, cnt, rb, out);
+        box.appendChild(d);
+      });
+    }
+
+    async function loadAreas() {
+      if (!SCRIPT_URL) return;
+      try {
+        const data = await api("areas");
+        areaData = data.areas || [];
+        fillAreaSelect();
+        $("batchInput").value = data.batch;
+        if (document.activeElement !== $("areaList")) {
+          $("areaList").value = areaData.map(a => a.query ? a.name + " | " + a.query : a.name).join("\n");
+        }
+        renderAreas();
+      } catch (err) {
+        $("areaMsg").textContent = "ಲೋಡ್ ಆಗಲಿಲ್ಲ: " + err.message;
+      }
+    }
+
     async function refreshAll() {
       if (!SCRIPT_URL) return;
       try {
         const data = await api("list");
         $("opinionCount").textContent = data.counts.opinions;
         $("interviewCount").textContent = data.counts.interviews;
-        renderList("opinionList", data.opinions, r => r.topic, r => r.opinion);
+        $("newsCount").textContent = data.counts.news || 0;
+        showExtras(data);
+        renderList("opinionList", data.opinions, r => (r.area ? r.area + " · " : "") + r.topic, r => r.opinion);
         renderList("interviewList", data.interviews, r => r.title,
           r => r.length + " ಅಕ್ಷರಗಳು — " + (r.summary ? cleanAI(r.summary).slice(0, 200) : r.preview));
         $("homeMsg").textContent = "";
@@ -247,6 +413,7 @@
         button.setAttribute("aria-current", "page");
         window.scrollTo(0, 0);
         if (button.dataset.page === "home" || button.dataset.page === "reports") refreshAll();
+        if (button.dataset.page === "areas" || button.dataset.page === "opinion") loadAreas();
       });
     });
 
@@ -312,9 +479,11 @@
     $("opinionBtn").addEventListener("click", () => {
       const topic = $("topic").value.trim();
       const opinion = $("opinionText").value.trim();
+      const area = $("opinionArea").value;
+      if (areaData.length && !area) { $("opinionResult").textContent = "ಮೊದಲು ಕ್ಷೇತ್ರ ಆರಿಸಿ."; return; }
       if (!topic || !opinion) { $("opinionResult").textContent = "ವಿಷಯ ಮತ್ತು ಅಭಿಪ್ರಾಯ ಎರಡನ್ನೂ ನಮೂದಿಸಿ."; return; }
       withButton($("opinionBtn"), $("opinionResult"), "ಉಳಿಸುತ್ತಿದೆ...", async () => {
-        await api("saveOpinion", { topic, opinion });
+        await api("saveOpinion", { topic, opinion, area });
         $("opinionResult").textContent = "ಅಭಿಪ್ರಾಯ Google Sheet ನಲ್ಲಿ ಉಳಿಸಲಾಗಿದೆ.";
         $("topic").value = "";
         $("opinionText").value = "";
@@ -329,6 +498,71 @@
         $("reportResult").textContent = cleanAI(data.result);
       });
     });
+    $("weeklyBtn").addEventListener("click", () => {
+      withButton($("weeklyBtn"), $("reportResult"), "ವಾರದ ವರದಿ ರಚಿಸುತ್ತಿದೆ...", async () => {
+        const data = await api("weeklyNow");
+        $("reportResult").textContent = cleanAI(data.result);
+        refreshAll();
+      });
+    });
+    $("saveTopicsBtn").addEventListener("click", () => {
+      const topics = $("topicsInput").value.trim();
+      if (!topics) { $("newsMsg").textContent = "ಕನಿಷ್ಠ ಒಂದು ವಿಷಯ ನಮೂದಿಸಿ."; return; }
+      withButton($("saveTopicsBtn"), $("newsMsg"), "ಉಳಿಸುತ್ತಿದೆ...", async () => {
+        const data = await api("setTopics", { topics });
+        $("newsMsg").textContent = "ವಿಷಯಗಳು ಉಳಿಸಲಾಗಿದೆ: " + data.topics;
+      });
+    });
+    $("newsNowBtn").addEventListener("click", () => {
+      withButton($("newsNowBtn"), $("newsMsg"), "ಸುದ್ದಿ ಸಂಗ್ರಹಿಸುತ್ತಿದೆ (ಸ್ವಲ್ಪ ಸಮಯ ಬೇಕು)...", async () => {
+        const data = await api("collectNews");
+        $("newsMsg").textContent = data.added
+          ? data.added + " ಹೊಸ ಸುದ್ದಿ ಸೇರಿಸಲಾಗಿದೆ."
+          : "ಹೊಸ ಸುದ್ದಿ ಸಿಗಲಿಲ್ಲ.";
+        refreshAll();
+      });
+    });
+    $("shareFormBtn").addEventListener("click", async () => {
+      const url = $("shareFormBtn").dataset.url;
+      if (!url) return;
+      try {
+        if (navigator.share) { await navigator.share({ title: "ಜನಾಭಿಪ್ರಾಯ ಫಾರ್ಮ್", url }); return; }
+        await navigator.clipboard.writeText(url);
+        $("formLink").textContent = url + "\n(ನಕಲಿಸಲಾಗಿದೆ)";
+      } catch (e) {
+        prompt("ಈ ಲಿಂಕ್ ನಕಲಿಸಿ:", url);
+      }
+    });
+    $("saveAreasBtn").addEventListener("click", () => {
+      const areas = $("areaList").value.trim();
+      if (!areas) { $("areaMsg").textContent = "ಕನಿಷ್ಠ ಒಂದು ಕ್ಷೇತ್ರ ನಮೂದಿಸಿ."; return; }
+      withButton($("saveAreasBtn"), $("areaMsg"), "ಉಳಿಸುತ್ತಿದೆ...", async () => {
+        const data = await api("setAreas", { areas });
+        $("areaMsg").textContent = data.count + " ಕ್ಷೇತ್ರಗಳು ಉಳಿಸಲಾಗಿದೆ.\n" + (data.formNote || "");
+        loadAreas();
+      });
+    });
+    $("saveBatchBtn").addEventListener("click", () => {
+      withButton($("saveBatchBtn"), $("areaMsg"), "ಉಳಿಸುತ್ತಿದೆ...", async () => {
+        const data = await api("setAreaBatch", { batch: $("batchInput").value });
+        $("areaMsg").textContent = "ಪ್ರತಿದಿನ " + data.batch + " ಕ್ಷೇತ್ರ ಪರಿಶೀಲಿಸಲಾಗುತ್ತದೆ.";
+      });
+    });
+    $("runAreasBtn").addEventListener("click", () => {
+      withButton($("runAreasBtn"), $("areaMsg"), "ಕ್ಷೇತ್ರಗಳನ್ನು ಪರಿಶೀಲಿಸುತ್ತಿದೆ. ಕೆಲವು ನಿಮಿಷ ಬೇಕಾಗಬಹುದು, ಪುಟ ಬಿಡಬೇಡಿ...", async () => {
+        const data = await api("runAreas");
+        $("areaMsg").textContent = data.processed + " ಕ್ಷೇತ್ರ ಪರಿಶೀಲಿಸಲಾಗಿದೆ (ಒಟ್ಟು " + data.total + ")." +
+          (data.note ? "\n" + data.note : "");
+        loadAreas();
+      });
+    });
+    $("syncFormBtn").addEventListener("click", () => {
+      withButton($("syncFormBtn"), $("areaMsg"), "ಫಾರ್ಮ್ ನವೀಕರಿಸುತ್ತಿದೆ...", async () => {
+        const data = await api("syncForm");
+        $("areaMsg").textContent = "ಫಾರ್ಮ್‌ನಲ್ಲಿ " + data.count + " ಕ್ಷೇತ್ರಗಳ ಪಟ್ಟಿ ನವೀಕರಿಸಲಾಗಿದೆ.";
+      });
+    });
+    $("areaSearch").addEventListener("input", renderAreas);
     $("reloadListBtn").addEventListener("click", refreshAll);
     $("refreshBtn").addEventListener("click", refreshAll);
 
